@@ -32,6 +32,9 @@ namespace BookSiteAPI
             services.ConfigureCors();
             services.ConfigureIISIntegration();
             services.ConfigureLoggerService();
+            services.AddAuthentication();
+            services.ConfigureIdentity();
+            services.ConfigureSqlContext(Configuration);
 
             services.AddControllers();
         }
@@ -56,6 +59,8 @@ namespace BookSiteAPI
             });
 
             app.UseRouting();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 
