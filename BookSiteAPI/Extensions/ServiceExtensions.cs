@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Entities;
 using Microsoft.EntityFrameworkCore;
+using Repository;
 
 namespace BookSiteAPI.Extensions
 {
@@ -37,6 +38,8 @@ namespace BookSiteAPI.Extensions
             options.UseSqlServer(configuration.GetConnectionString("sqlConnection"), b =>
             b.MigrationsAssembly("BookSiteAPI")
             ));
+        public static void ConfigureRepositoryManager(this IServiceCollection services) =>
+            services.AddScoped<IRepositoryManager, RepositoryManager>();
         public static void ConfigureIdentity(this IServiceCollection services)
         {
             var builder = services.AddIdentityCore<User>(u =>

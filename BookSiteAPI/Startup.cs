@@ -35,6 +35,7 @@ namespace BookSiteAPI
             services.AddAuthentication();
             services.ConfigureIdentity();
             services.ConfigureSqlContext(Configuration);
+            services.ConfigureRepositoryManager();
 
             services.AddControllers();
         }
